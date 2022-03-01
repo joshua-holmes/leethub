@@ -11,13 +11,11 @@
  * @return {boolean}
  */
 var isSymmetric = function(root) {
-    let left = root.left;
-    let right = root.right;
-    const checker = (n1, n2) => {
-        if (!n1 && !n2) return true;
-        if (!n1 || !n2 || n1.left?.val !== n2.right?.val || n1.right?.val !== n2.left?.val) return false;
-        return checker(n1.left, n2.right) && checker(n1.right, n2.left)
+    if (!root) return true;
+    const checkMirror = (left, right) => {
+        if (!left && !right) return true;
+        if (!left || !right || left?.val !== right?.val) return false;
+        return checkMirror(left.left, right.right) && checkMirror(left.right, right.left)
     }
-    if (left?.val !== right?.val) return false;
-    return checker(left, right)
+    return checkMirror(root.left, root.right)
 };
