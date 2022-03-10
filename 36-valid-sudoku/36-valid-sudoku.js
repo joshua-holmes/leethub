@@ -4,7 +4,7 @@
  */
 var isValidSudoku = function(board) {
     function findQuadrant(x, y) {
-      return Math.floor(y / 3) * 3 + Math.floor(x / 3);
+        return Math.floor(y / 3) * 3 + Math.floor(x / 3);
     }
     const columns = [[],[],[],[],[],[],[],[],[]];
     const box = [[],[],[],[],[],[],[],[],[]];
