@@ -8,7 +8,7 @@ var countPoints = function(points, queries) {
     const answer = [];
     // loop through circles (i)
     for (let i = 0; i < queries.length; i++) {
-        let counter = 0
+        let counter = 0;
         // loop through points (j)
         for (let j = 0; j < points.length; j++) {
             // a = subtract point[x] from queries[x] (absolute value)
