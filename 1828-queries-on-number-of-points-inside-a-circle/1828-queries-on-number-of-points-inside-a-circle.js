@@ -20,7 +20,7 @@ var countPoints = function(points, queries) {
             // if c < r, then add one to answer[0] += 1
             if (c <= queries[i][2]) counter += 1;
         }
-        answer.push(counter)
+        answer.push(counter);
     }
     return answer;
 };
