@@ -19,26 +19,14 @@ class Solution:
             return max(left, right, level)
         height = count(root)
         n = 2**(height + 1) - 1
-        res = []
-        for i in range(0, height + 1):
-            res.append([""] * n)
-        
-        def addNode(res, r, c, node, direction):
-            if direction == 'left':
-                newC = c - 2**(height - r - 1)
-            else:
-                newC = c + 2**(height - r - 1)
-            newR = r + 1
-            res[newR][newC] = str(node.val)
-            if node.left:
-                addNode(res, newR, newC, node.left, 'left')
-            if node.right:
-                addNode(res, newR, newC, node.right, 'right')
+        res = [[""] * n for _ in range(0, height + 1)]
+        def build(r, c, node):
+            if not node:
+                return
+            res[r][c] = str(node.val)
+            build(r + 1, c - 2**(height - r - 1), node.left)
+            build(r + 1, c + 2**(height - r - 1), node.right)
         r = 0
-        c = int((n - 1) / 2)
-        res[r][c] = str(root.val)
-        if node.left:
-            addNode(res, r, c, root.left, 'left')
-        if node.right:
-            addNode(res, r, c, root.right, 'right')
+        c = (n - 1) // 2
+        build(r, c, root)
         return res
