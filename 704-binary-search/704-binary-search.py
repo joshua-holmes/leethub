@@ -3,7 +3,6 @@ class Solution:
         if not nums:
             return -1
         mid = len(nums) // 2
-        print(mid, startingIndex)
         if nums[mid] == target:
             return mid + startingIndex
         elif nums[mid] < target:
