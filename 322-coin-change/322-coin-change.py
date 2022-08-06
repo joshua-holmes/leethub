@@ -1,27 +1,17 @@
 from math import floor
-
+from collections import deque
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         if amount == 0: return 0
-        cache = {}
-        def dfs(total):
-            if total in cache:
-                return cache[total]
-            count = -1
+        seen = set()
+        q = deque([(amount, 0)])
+        while q:
+            remaining, count = q.pop()
             for coin in coins:
-                if total - coin == 0:
-                    return 1
-                elif total - coin > 0:
-                    res = dfs(total - coin)
-                    if res == -1:
-                        continue
-                    if count != -1:
-                        count = min(res, count)
-                    else:
-                        count = res
-            output = count + 1 if count != -1 else -1
-            cache[total] = output
-            return output
-        return dfs(amount)
-            
+                if remaining - coin == 0:
+                    return count + 1
+                elif remaining - coin > 0 and remaining - coin not in seen:
+                    q.appendleft((remaining - coin, count + 1))
+                    seen.add(remaining - coin)
+        return -1
         
