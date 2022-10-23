@@ -9,7 +9,7 @@ public:
             vector<int> lastHalf = vector<int>(nums.begin() + middle + 1, nums.end());
             return 1 + middle + searchInsert(lastHalf, target);
         }
-        vector<int> firstHalf = vector<int>(nums.begin(), nums.end() - middle - (nums.size() == 1 ? 1 : 0) );
+        vector<int> firstHalf = vector<int>(nums.begin(), nums.end() - middle - (nums.size() % 2 == 0 ? 0 : 1) );
         return searchInsert(firstHalf, target);
     }
 };
