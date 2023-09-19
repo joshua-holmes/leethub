@@ -5,19 +5,20 @@ class Solution:
         """
         if len(nums) == 1:
             return
-        is_sorted = False
-        while not is_sorted:
-            nums_swapped = False
-            print(nums)
-            for i, n in enumerate(nums):
-                if i == 0:
-                    continue
-                last_n = nums[i - 1]
-                if last_n > n:
-                    nums[i] = last_n
-                    nums[i - 1] = n
-                    if not nums_swapped:
-                        nums_swapped = True
-            if not nums_swapped:
-                is_sorted = True
-        
+        def swap(left_i, right_i):
+            left_n = nums[left_i]
+            nums[left_i] = nums[right_i]
+            nums[right_i] = left_n
+        i = 0
+        left = 0
+        right = len(nums) - 1
+        while i <= right:
+            if nums[i] == 0:
+                swap(left, i)
+                left += 1
+                i += 1
+            elif nums[i] == 2:
+                swap(i, right)
+                right -= 1
+            else:
+                i += 1
