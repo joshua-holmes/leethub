@@ -1,0 +1,16 @@
+bool canJump(int* nums, int numsSize){
+    int farthest = 0, i = 0;
+    while (i <= farthest && i < numsSize) {
+        farthest = max(farthest, nums[i] + i);
+        if (farthest >= numsSize - 1)
+            return true;
+        i += 1;
+    }
+    return false;
+}
+
+int max(int a, int b) {
+    if (a > b)
+        return a;
+    return b;
+}
