@@ -1,18 +1,36 @@
 class Solution {
 public:
     bool canPlaceFlowers(vector<int>& flowerbed, int n) {
-        int pottable = 0;
-        for (int i = 0; i < flowerbed.size() && pottable < n; i++) {
-            if (flowerbed[i] == 0) {
-                int prev = i > 0 ? flowerbed[i - 1] : -1;
-                int next = i < flowerbed.size() - 1 ? flowerbed[i + 1] : -1;
-                if (prev < 1 && next < 1) {
-                    flowerbed[i] = 1;
-                    pottable += 1;
-                }
+        // 0 = empty pot
+        // 1 = full pot
+        // 2 = empty, but is viable to be potted
+        int prev = -1;
+        int total_pottable = 0;
+        for (auto pot : flowerbed) {
+            switch (prev) {
+                case -1:
+                    if (pot == 0) {
+                        prev = 2;
+                        total_pottable += 1;
+                        continue;
+                    }
+                    break;
+                case 0:
+                    if (pot == 0) {
+                        prev = 2;
+                        total_pottable += 1;
+                        continue;
+                    }
+                    break;
+                case 2:
+                    if (pot == 1) {
+                        total_pottable -= 1;
+                    }
+                    break;
             }
+            prev = pot;
         }
         
-        return pottable >= n;
+        return total_pottable >= n;
     }
 };
