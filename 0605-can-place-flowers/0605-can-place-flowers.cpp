@@ -1,9 +1,6 @@
 class Solution {
 public:
     bool canPlaceFlowers(vector<int>& flowerbed, int n) {
-        // 0 = empty pot
-        // 1 = full pot
-        // 2 = empty, but is viable to be potted
         int prev = 0;
         int total_pottable = 0;
         for (auto pot : flowerbed) {
