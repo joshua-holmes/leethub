@@ -9,8 +9,13 @@ impl Solution {
         let vowels = "aeiouAEIOU";
         
         while left < right {
-            let l_is_vowel = vowels.contains(chars[left] as char);
-            let r_is_vowel = vowels.contains(chars[right] as char);
+            let mut l_is_vowel = false;
+            let mut r_is_vowel = false;
+            for v in vowels.chars() {
+                if v == chars[left] as char { l_is_vowel = true; }
+                if v == chars[right] as char { r_is_vowel = true; }
+                if l_is_vowel && r_is_vowel { break; }
+            }
             if !l_is_vowel { left += 1; }
             if !r_is_vowel { right -= 1; }
             if r_is_vowel && l_is_vowel {
