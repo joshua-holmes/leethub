@@ -6,14 +6,14 @@ impl Solution {
         
         let mut left = 0;
         let mut right = s.len() - 1;
-        let vowels = "aeiouAEIOU";
+        let vowels = "aeiouAEIOU".as_bytes();
         
         while left < right {
             let mut l_is_vowel = false;
             let mut r_is_vowel = false;
-            for v in vowels.chars() {
-                if v == chars[left] as char { l_is_vowel = true; }
-                if v == chars[right] as char { r_is_vowel = true; }
+            for v in vowels {
+                if *v == chars[left] { l_is_vowel = true; }
+                if *v == chars[right] { r_is_vowel = true; }
                 if l_is_vowel && r_is_vowel { break; }
             }
             if !l_is_vowel { left += 1; }
