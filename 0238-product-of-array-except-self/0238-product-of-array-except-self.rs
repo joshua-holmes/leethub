@@ -5,12 +5,11 @@ impl Solution {
         let mut left = 1;
         let mut right = 1;
         
-        let len = nums.len();
-        for i in 0..len {
+        for i in 0..nums.len() {
             answer[i] *= left;
-            answer[len - 1 - i] *= right;
+            answer[nums.len() - 1 - i] *= right;
             left *= nums[i];
-            right *= nums[len -1 - i];
+            right *= nums[nums.len() - 1 - i];
         }
         
         answer
