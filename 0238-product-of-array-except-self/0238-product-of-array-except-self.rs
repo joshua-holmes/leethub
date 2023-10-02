@@ -5,8 +5,8 @@ impl Solution {
         for i in 1..nums.len() {
             answer.push(nums[i - 1] * answer[i - 1]);
         }
-        let mut right = nums[nums.len() - 1];
-        for i in (0..nums.len() - 1).rev() {
+        let mut right = 1;
+        for i in (0..nums.len()).rev() {
             answer[i] *= right;
             right *= nums[i];
         }
