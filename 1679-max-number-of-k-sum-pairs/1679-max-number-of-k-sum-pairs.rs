@@ -10,13 +10,11 @@ impl Solution {
         for n in nums {
             let target = k - n;
             if let Some(target_count) = h_map.get_mut(&target) {
-                if *target_count > 0 {
-                    count += 1;
-                    if *target_count == 1 {
-                        h_map.remove(&target);
-                    } else {
-                        *target_count -= 1;
-                    }
+                count += 1;
+                if *target_count > 1 {
+                    *target_count -= 1;
+                } else {
+                    h_map.remove(&target);
                 }
             } else {
                 h_map.entry(n).and_modify(|t_count| *t_count += 1).or_insert(1);
