@@ -10,8 +10,6 @@ impl Solution {
             }
         }
         
-        // if max == 0 { return 0.0; }
-        
         max as f64 / k as f64
     }
 }
