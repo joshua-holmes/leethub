@@ -1,10 +1,13 @@
 use std::cmp;
+use std::collections::HashSet;
 
 impl Solution {
     pub fn max_vowels(s: String, k: i32) -> i32 {
         let mut max = 0;
         let string = s.as_bytes();
-        let vowels = ['a', 'e', 'i', 'o', 'u'];
+        
+        // store vowels in set for O(1) lookup time
+        let vowels = HashSet::from(['a', 'e', 'i', 'o', 'u']);
         
         // count of vowels as window (i through j) progresses
         let mut cur_count = 0;
