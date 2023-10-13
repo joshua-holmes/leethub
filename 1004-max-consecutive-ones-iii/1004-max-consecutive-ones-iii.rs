@@ -19,16 +19,18 @@ impl Solution {
                 right += 1;
             } else {
                 // move `left`
-                if nums[left] == 0 && my_k < k  {
-                    my_k += 1;
-                    cur_1_count -= 1;
-                } else if nums[left] == 1 {
+                if nums[left] == 1 || my_k < k  {
+                    if nums[left] == 0 {
+                        my_k += 1;
+                    }
+                    
                     cur_1_count -= 1;
                 }
                 
                 if left == right {
                     right += 1;
                 }
+                
                 left += 1;
             }
         }
