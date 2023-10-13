@@ -24,7 +24,9 @@ impl Solution {
                     cur_1_count -= 1;
                 } else if nums[left] == 1 {
                     cur_1_count -= 1;
-                } else if left == right {
+                }
+                
+                if left == right {
                     right += 1;
                 }
                 left += 1;
