@@ -11,19 +11,21 @@ impl Solution {
         while right < nums.len() {
             if nums[right] == 1 || my_k > 0 {
                 // move `right`
+
                 if nums[right] == 0 {
                     my_k -= 1;
                 }
+
                 cur_1_count += 1;
                 max = cmp::max(max, cur_1_count);
                 right += 1;
             } else {
                 // move `left`
+
                 if nums[left] == 1 || my_k < k  {
                     if nums[left] == 0 {
                         my_k += 1;
                     }
-                    
                     cur_1_count -= 1;
                 }
                 
