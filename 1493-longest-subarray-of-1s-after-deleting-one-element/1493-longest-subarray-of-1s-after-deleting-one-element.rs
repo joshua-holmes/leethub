@@ -1,3 +1,5 @@
+use std::cmp;
+
 impl Solution {
     pub fn longest_subarray(nums: Vec<i32>) -> i32 {
         let mut num_of_0s = 0;
@@ -15,8 +17,7 @@ impl Solution {
                 left += 1;
             }
             if num_of_0s <= 1 {
-                let count = (i - left) as i32;
-                if count > max { max = count; }
+                max = cmp::max(max, (i - left) as i32);
             }
         }
         
