@@ -4,33 +4,35 @@ impl Solution {
     pub fn close_strings(word1: String, word2: String) -> bool {
         // words need to be the same length
         // words need to contain the same ratio of different letters
-        // words need to have the same number of different letters
+        // words need to have the same letters used between words
         
         if word1.len() != word2.len() {
             return false;
         }
         
-        let mut letters1 = HashMap::new();
-        let mut letters2 = HashMap::new();
+        let mut letters1 = HashSet::new();
+        let mut letters2 = HashSet::new();
+        let mut char_count1 = [0; 26];
+        let mut char_count2 = [0; 26];
         
         for b in word1.as_bytes() {
-            *letters1.entry(*b).or_insert(0) += 1;
+            char_count1[(*b - 'a' as u8) as usize] += 1;
+            letters1.insert(*b);
         }
         for b in word2.as_bytes() {
-            *letters2.entry(*b).or_insert(0) += 1;
+            char_count2[(*b - 'a' as u8) as usize] += 1;
+            letters2.insert(*b);
         }
-        
-        let mut values1: Vec<&i32> = letters1.values().collect();
-        let mut values2: Vec<&i32> = letters2.values().collect();
-        values1.sort();
-        values2.sort();
-        if values1 != values2 {
+
+        // check that ratio of different letters is correct
+        char_count1.sort();
+        char_count2.sort();
+        if char_count1 != char_count2 {
             return false;
         }
         
-        let keys1: HashSet<&u8> = letters1.keys().collect();
-        let keys2: HashSet<&u8> = letters2.keys().collect();
-        if keys1 != keys2 {
+        // check that the same letters between words are used
+        if letters1 != letters2 {
             return false;
         }
         
