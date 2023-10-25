@@ -13,13 +13,10 @@ impl Solution {
         let mut letters1 = HashMap::new();
         let mut letters2 = HashMap::new();
         
-        let word_bytes1 = word1.as_bytes();
-        let word_bytes2 = word2.as_bytes();
-        
-        for b in word_bytes1 {
+        for b in word1.as_bytes() {
             *letters1.entry(*b).or_insert(0) += 1;
         }
-        for b in word_bytes2 {
+        for b in word2.as_bytes() {
             *letters2.entry(*b).or_insert(0) += 1;
         }
         
@@ -33,7 +30,6 @@ impl Solution {
         
         let keys1: HashSet<&u8> = letters1.keys().collect();
         let keys2: HashSet<&u8> = letters2.keys().collect();
-        
         if keys1 != keys2 {
             return false;
         }
