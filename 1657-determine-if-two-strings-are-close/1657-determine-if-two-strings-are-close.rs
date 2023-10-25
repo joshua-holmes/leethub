@@ -17,12 +17,10 @@ impl Solution {
         let word_bytes2 = word2.as_bytes();
         
         for b in word_bytes1 {
-            let letter = *b as char;
-            *letters1.entry(letter).or_insert(0) += 1;
+            *letters1.entry(*b).or_insert(0) += 1;
         }
         for b in word_bytes2 {
-            let letter = *b as char;
-            *letters2.entry(letter).or_insert(0) += 1;
+            *letters2.entry(*b).or_insert(0) += 1;
         }
         
         let mut values1: Vec<&i32> = letters1.values().collect();
@@ -33,8 +31,8 @@ impl Solution {
             return false;
         }
         
-        let keys1: HashSet<&char> = letters1.keys().collect();
-        let keys2: HashSet<&char> = letters2.keys().collect();
+        let keys1: HashSet<&u8> = letters1.keys().collect();
+        let keys2: HashSet<&u8> = letters2.keys().collect();
         
         if keys1 != keys2 {
             return false;
