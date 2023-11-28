@@ -9,17 +9,17 @@ impl Solution {
             }
             
             while let Some(new_a) = new_astroids.last() {
-                if *new_a > 0 {
-                    if -a > *new_a {
-                        new_astroids.pop();
-                    } else if -a < *new_a {
-                        continue 'main;
-                    } else {
-                        new_astroids.pop();
-                        continue 'main;
-                    }
-                } else {
+                if *new_a < 0 {
                     break;
+                }
+                
+                if -a > *new_a {
+                    new_astroids.pop();
+                } else if -a < *new_a {
+                    continue 'main;
+                } else {
+                    new_astroids.pop();
+                    continue 'main;
                 }
             }
             
