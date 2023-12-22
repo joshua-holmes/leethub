@@ -17,7 +17,6 @@ impl Solution {
             if let Some(r) = r_list.pop_front() {
                 if let Some(d) = d_list.pop_front() {
                     max_i += 1;
-                    println!("{} {}", r, d);
                     if d < r {
                         d_list.push_back(max_i);
                     } else {
