@@ -88,8 +88,6 @@ fn calculate_area(height: &Vec<i32>, peak1: usize, peak2: usize) -> i32 {
     let h2 = height[peak2];
     let min = cmp::min(h1, h2);
     let mut area = 0;
-    println!("P1 {:?} {:?}", peak1, h1);
-    println!("P2 {:?} {:?}", peak2, h2);
     for i in (peak1 + 1)..peak2 {
         area += cmp::max(min - height[i], 0);
     }
